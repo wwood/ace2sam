@@ -19,3 +19,7 @@ Assumptions about ACE:
 
  * Each line ends with '\n', not '\r' or '\r\n'.
 
+
+Credit
+
+ Originally created by Heng Li (https://github.com/lh3/misc/tree/master/seq/ace2sam), modified by Connor Skennerton and Ben Woodcroft (https://github.com/wwood/ace2sam).
