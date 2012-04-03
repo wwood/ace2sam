@@ -1,12 +1,10 @@
 To compile:
 
-  gcc -g -O2 -Wall -o ace2sam ace2sam.c -lz
+  gcc -g -O2 -Wall -o ace2sam_bin ace2sam.c -lz
 
 To run:
 
-  ace2sam in.ace > a2s.out 2> a2s.err
-  (grep ^H a2s.err | sed s,^..,,; cat a2s.out) > a2s.sam
-  grep ^S a2s.err | sed s,^..,, > a2s.fa
+  ace2sam.sh -i <in.ace> -f <out.fa> -s <out.sam>
 
 The immediate output of ace2sam is a SAM without header. Ace2sam works on a
 stream. It is unable to write the SAM header until it sees all the contigs.

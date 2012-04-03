@@ -2,6 +2,7 @@
 INPUT=
 SAM=
 FASTA=
+USAGE="Usage: ace2sam.sh -i <in.ace> -f <out.fa> -s <out.sam>"
 while getopts ":i:hf:s:" opt; do
     case $opt in
         i)
@@ -14,7 +15,7 @@ while getopts ":i:hf:s:" opt; do
             SAM=$OPTARG
             ;;
         h)
-            echo "ace2sam.sh -i in.ace -f out.fa -s out.sam"
+            echo $USAGE
             ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2
@@ -27,8 +28,11 @@ while getopts ":i:hf:s:" opt; do
     esac
 done
 
+if [ -z "$INPUT" ] || [ -z "$FASTA" ] || [ -z "$SAM" ]
+then
+echo $USAGE
 
-
+else
 ace2sam_bin $INPUT >a2s.out 2>a2s.err && (grep ^H a2s.err | sed s,^..,,; cat a2s.out) > $SAM && grep ^S a2s.err | sed s,^..,, > $FASTA && rm a2s.out a2s.err
 
 # Report errors if there were errors
@@ -36,3 +40,7 @@ if [ -f a2s.err ];
 then
     cat a2s.err
 fi
+
+fi
+
+
