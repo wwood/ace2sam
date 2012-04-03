@@ -4,7 +4,7 @@ To compile:
 
 To run:
 
-  ace2sam.sh -i <in.ace> -f <out.fa> -s <out.sam>
+  ace2sam -i <in.ace> -f <out.fa> -s <out.sam>
 
 The immediate output of ace2sam is a SAM without header. Ace2sam works on a
 stream. It is unable to write the SAM header until it sees all the contigs.
