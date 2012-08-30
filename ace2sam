@@ -33,12 +33,16 @@ then
 echo $USAGE
 
 else
-ace2sam_bin $INPUT >a2s.out 2>a2s.err && (grep ^H a2s.err | sed s,^..,,; cat a2s.out) > $SAM && grep ^S a2s.err | sed s,^..,, > $FASTA && rm a2s.out a2s.err
+
+OUT_FILE="/tmp/$(basename $0).$RANDOM.txt"
+ERR_FILE="/tmp/$(basename $0).$RANDOM.txt"
+
+ace2sam_bin $INPUT >$OUT_FILE 2>$ERR_FILE && (grep ^H $ERR_FILE | sed s,^..,,; cat $OUT_FILE) > $SAM && grep ^S $ERR_FILE | sed s,^..,, > $FASTA && rm $OUT_FILE $ERR_FILE
 
 # Report errors if there were errors
-if [ -f a2s.err ];
+if [ -f $ERR_FILE ];
 then
-    cat a2s.err
+    cat $ERR_FILE
 fi
 
 fi
